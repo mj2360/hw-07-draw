@@ -1,4 +1,51 @@
 body{
-    margin:0; 
+    margin:0px; 
     padding:0; 
+}
+
+#black{
+    background-color: black;
+    color: white; 
+    font-size: 26px; 
+}
+
+#red{
+    background-color: red;
+    color: white;
+    font-size: 26px;  
+}
+
+#blue{
+    background-color: blue;
+    color: white; 
+    font-size: 26px; 
+}
+
+#green{
+    background-color: green;
+    color: white; 
+    font-size: 26px; 
+}
+
+#pink{
+    background-color:rgb(255, 192, 203);
+    color: teal; 
+    font-size: 26px; 
+}
+
+#purple{
+    background-color: rgb(128, 0, 170);
+    color: white; 
+    font-size: 26px; 
+}
+#yellow{
+    background-color: yellow;
+    color: blue; 
+    font-size: 26px; 
+}
+
+#clear{
+    margin-left: 2030px;
+    margin-right: 0; 
+    font-size: 26px; 
 }
