@@ -14,7 +14,8 @@ function setup(){
     createCanvas(windowWidth, windowHeight);
     background("white");
 
-    socket = io.connect('http://localhost:3003');
+    //changed from local host to the heroku 
+    socket = io.connect('https://reflective-drawing.herokuapp.com/');
 
     //handling broadcast calls
     socket.on('mouse', newDrawing);
