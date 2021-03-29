@@ -7,12 +7,12 @@ var express = require('express');
 var app = express(); 
 
 //setting up listener 
-// var server = app.listen(3003); 
+var server = app.listen(3003); 
 
 // || ---> OR operator 
 //telling it to listen to port or 3003
-var port = process.env.PORT || 3003
-var server = app.listen(port);
+// var port = process.env.PORT || 3003
+// var server = app.listen(port);
 
 app.use(express.static('public'));
 
@@ -28,9 +28,14 @@ function newConnection(socket){
     console.log("new connection!" + socket.id);
 
     socket.on('mouse', mouseMsg); 
+    socket.on('moreSpace', spaceMsg); 
 
     function mouseMsg(data){
         // console.log(data);
         socket.broadcast.emit('mouse', data);
+    }
+
+    function spaceMsg(data){
+        socket.broadcast.emit('moreSpace', data);
     }
 }

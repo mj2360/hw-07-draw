@@ -8,17 +8,21 @@ var pos0neg = -1;
 var strkCol; 
 var buttonBlack, buttonRed, buttonBlue, buttonGreen, buttonPink, buttonPurple, buttonYellow, buttonClear; 
 var r, g, b = 0;
+var bg_color = "white"; 
+var white_bg = true; 
  
 
 function setup(){
     createCanvas(windowWidth, windowHeight);
-    background("white");
+    background(bg_color);
 
     //changed from local host to the heroku 
-    socket = io.connect('https://reflective-drawing.herokuapp.com/');
+    // socket = io.connect('https://reflective-drawing.herokuapp.com/');
+    socket = io.connect("http://localhost:3003");
 
     //handling broadcast calls
     socket.on('mouse', newDrawing);
+    socket.on('moreSpace', makeSpace);
 
     buttonBlack = select("#black");
     buttonRed = select("#red");
@@ -38,6 +42,31 @@ function setup(){
     buttonYellow.mousePressed(makeYellow);
     buttonClear.mousePressed(makeBlank);
 
+}
+
+function makeSpace(data){
+
+  // data.whiteBG = !data.whiteBG
+  if(data.whiteBG == false){
+
+    data.bgColor = "black"; 
+    background(data.bgColor);
+
+    //changes black stroke to white stroke
+    data.redVal = 250; 
+    data.greenVal = 250; 
+    data.bluVal= 250; 
+
+  } else{
+
+      data.bgColor = "white"; 
+      background(data.bgColor); 
+
+      //changes white stroke to black stroke
+      data.redVal= 0; 
+      data.greenVal = 0; 
+      data.bluVal = 0; 
+  } 
 }
 
 function makeBlack(){
@@ -162,3 +191,45 @@ function mousePressed(){
     prevMouseX = mouseX; 
     prevMouseY = mouseY;
 }
+
+
+function keyPressed(){
+
+  if (keyCode == 32){
+    white_bg = !white_bg
+    console.log(white_bg);
+
+    if(white_bg == false){
+
+      bg_color = "black"; 
+      background(bg_color);
+
+      //changes black stroke to white stroke
+      r= 250; 
+      g = 250; 
+      b= 250; 
+
+    } else{
+
+        bg_color = "white"; 
+        background(bg_color); 
+
+        //changes white stroke to black stroke
+        r= 0; 
+        g = 0; 
+        b= 0; 
+    }
+  }
+
+    var data = {
+      bgColor: bg_color, 
+      redVal: r, 
+      greenVal: g, 
+      bluVal: b, 
+      whiteBG: white_bg
+    }
+
+    
+    // tell the other clients to clear screens
+    socket.emit('moreSpace', data);
+  }
