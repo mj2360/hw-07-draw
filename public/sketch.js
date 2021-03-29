@@ -7,7 +7,8 @@ var strk_wait = max_strk;
 var pos0neg = -1; 
 var strkCol; 
 var buttonBlack, buttonRed, buttonBlue, buttonGreen, buttonPink, buttonPurple, buttonYellow, buttonClear; 
-var r, g, b = 0; 
+var r, g, b = 0;
+ 
 
 function setup(){
     createCanvas(windowWidth, windowHeight);
@@ -35,6 +36,7 @@ function setup(){
     buttonPurple.mousePressed(makePurple);
     buttonYellow.mousePressed(makeYellow);
     buttonClear.mousePressed(makeBlank);
+
 }
 
 function makeBlack(){

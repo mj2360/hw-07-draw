@@ -7,7 +7,12 @@ var express = require('express');
 var app = express(); 
 
 //setting up listener 
-var server = app.listen(3003); 
+// var server = app.listen(3003); 
+
+// || ---> OR operator 
+//telling it to listen to port or 3003
+var port = process.env.PORT || 3003
+var server = app.listen(port);
 
 app.use(express.static('public'));
 
