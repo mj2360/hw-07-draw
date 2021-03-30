@@ -6,7 +6,7 @@ var min_strk = 0.5;
 var strk_wait = max_strk; 
 var pos0neg = -1; 
 var strkCol; 
-var buttonBlack, buttonRed, buttonBlue, buttonGreen, buttonPink, buttonPurple, buttonYellow, buttonClear; 
+var buttonBlack, buttonRed, buttonBlue, buttonGreen, buttonPink, buttonPurple, buttonYellow; 
 var r, g, b = 0;
 var bg_color = "white"; 
 var white_bg = true; 
@@ -17,8 +17,8 @@ function setup(){
     background(bg_color);
 
     //changed from local host to the heroku 
-    // socket = io.connect('https://reflective-drawing.herokuapp.com/');
-    socket = io.connect("http://localhost:3003");
+    socket = io.connect('https://reflective-drawing.herokuapp.com/');
+    // socket = io.connect("http://localhost:3003");
 
     //handling broadcast calls
     socket.on('mouse', newDrawing);
@@ -31,7 +31,6 @@ function setup(){
     buttonPink = select("#pink");
     buttonPurple = select("#purple");
     buttonYellow = select("#yellow");
-    buttonClear = select("#clear");
 
     buttonBlack.mousePressed(makeBlack);
     buttonRed.mousePressed(makeRed);
@@ -40,7 +39,6 @@ function setup(){
     buttonPink.mousePressed(makePink);
     buttonPurple.mousePressed(makePurple);
     buttonYellow.mousePressed(makeYellow);
-    buttonClear.mousePressed(makeBlank);
 
 }
 
@@ -105,10 +103,6 @@ function makeYellow(){
   r= 250;
   g = 250; 
   b = 0; 
-}
-
-function makeBlank(){
-  clear();
 }
 
 function newDrawing(data){
@@ -196,6 +190,7 @@ function mousePressed(){
 function keyPressed(){
 
   if (keyCode == 32){
+    
     white_bg = !white_bg
     console.log(white_bg);
 
@@ -219,6 +214,8 @@ function keyPressed(){
         g = 0; 
         b= 0; 
     }
+    //stops the Spacebar from executing default function(i.e. scrolling down)
+    return false;
   }
 
     var data = {

@@ -3,6 +3,23 @@ body{
     padding:0; 
 }
 
+.container{
+    height: 40px;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.item{
+    margin: 2px; 
+    margin-top: 0px; 
+    
+}
+
+.custom-cursor {
+    cursor: url(images/brush.png), auto;
+  }
+
 #black{
     background-color: black;
     color: white; 
@@ -44,8 +61,8 @@ body{
     font-size: 26px; 
 }
 
-#clear{
-    margin-left: 2030px;
-    margin-right: 0; 
-    font-size: 26px; 
+p{
+    margin-left: 1500px;
+    margin-top: 0px;
+    font-size: 32px;
 }

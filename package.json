@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/mj2360/hw-07-draw#readme",
   "dependencies": {
+    "@tabler/icons": "^1.39.1",
     "express": "^4.17.1",
     "socket.io": "^4.0.0"
   }
